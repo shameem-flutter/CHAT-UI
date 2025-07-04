@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1087498135050",
+    "project_id": "chatui-82e4d",
+    "storage_bucket": "chatui-82e4d.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1087498135050:android:9d9e23ad625257116d61f3",
+        "android_client_info": {
+          "package_name": "com.example.chat_ui"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCMnsHsiSULWnBl6nrPPt4g4Lz-RUiWFEQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
