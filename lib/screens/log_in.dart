@@ -9,6 +9,7 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
+  final nameController = TextEditingController();
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
@@ -78,6 +79,11 @@ class _LogInPageState extends State<LogInPage> {
       'Registration Successful',
       'Sign Up Error ',
     );
+    if (FirebaseAuth.instance.currentUser != null) {
+      await FirebaseAuth.instance.currentUser!.updateDisplayName(
+        nameController.text.trim(),
+      );
+    }
   }
 
   @override
@@ -98,7 +104,7 @@ class _LogInPageState extends State<LogInPage> {
             children: [
               Column(
                 children: [
-                  SizedBox(height: 150),
+                  SizedBox(height: 130),
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -110,6 +116,30 @@ class _LogInPageState extends State<LogInPage> {
                         ),
                       ),
                       SizedBox(height: 100),
+
+                      TextFormField(
+                        controller: nameController,
+                        decoration: InputDecoration(
+                          hintText: "enter your display name",
+                          filled: true,
+                          fillColor: Theme.of(
+                            context,
+                          ).colorScheme.surfaceVariant,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(12),
+                            borderSide: BorderSide.none,
+                          ),
+                        ),
+                        validator: (value) {
+                          if (value == null || value.isEmpty) {
+                            return "please enter your name";
+                          }
+                          return null;
+                        },
+                      ),
+
+                      SizedBox(height: 05),
+
                       TextFormField(
                         controller: emailController,
                         keyboardType: TextInputType.emailAddress,
@@ -160,9 +190,9 @@ class _LogInPageState extends State<LogInPage> {
                           return null;
                         },
                       ),
-                      SizedBox(height: 50),
+                      SizedBox(height: 30),
                       _isLoading
-                          ? CircularProgressIndicator()
+                          ? Center(child: CircularProgressIndicator())
                           : SizedBox(
                               height: 60,
                               width: double.infinity,

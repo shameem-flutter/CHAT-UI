@@ -1,3 +1,4 @@
+import 'package:chat_ui/screens/chat_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -15,9 +16,29 @@ class Homepage extends StatelessWidget {
       appBar: AppBar(
         actions: [IconButton(onPressed: signOut, icon: Icon(Icons.logout))],
       ),
-      body: Text(
-        "LOGGED IN AS:\n${user?.email ?? 'unknown'} ",
-        style: TextStyle(fontSize: 20),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: SizedBox(
+            height: 60,
+            width: double.infinity,
+            child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.black,
+                shape: ContinuousRectangleBorder(
+                  borderRadius: BorderRadius.circular(30),
+                ),
+              ),
+              child: const Text("Go to Chat"),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (_) => ChatScreen()),
+                );
+              },
+            ),
+          ),
+        ),
       ),
     );
   }
